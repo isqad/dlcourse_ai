@@ -1,3 +1,5 @@
+from collections import Counter
+
 def binary_classification_metrics(prediction, ground_truth):
     '''
     Computes metrics for binary classification
@@ -9,10 +11,22 @@ def binary_classification_metrics(prediction, ground_truth):
     Returns:
     precision, recall, accuracy, f1 - classification metrics
     '''
-    precision = 0
-    recall = 0
-    accuracy = 0
-    f1 = 0
+    tp = 0
+    fp = 0
+    fn = 0
+    tn = 0
+    s  = ground_truth.shape[0]
+    
+    for i in range(s):
+        if prediction[i] == True and ground_truth[i] == True: tp += 1
+        if prediction[i] == False and ground_truth[i] == False: tn += 1
+        if prediction[i] == False and ground_truth[i] == True: fn += 1
+        if prediction[i] == True and ground_truth[i] == False: fp += 1
+            
+    accuracy = (tp + tn) / (tp + fp + fn + tn)
+    recall = tp / (tp + fn)
+    precision = tp / (tp + fp)
+    f1 = 2*precision*recall/ (precision + recall)
 
     # TODO: implement metrics!
     # Some helpful links:
