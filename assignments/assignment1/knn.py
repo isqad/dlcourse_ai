@@ -131,10 +131,12 @@ class KNN:
            for every test sample
         '''
         num_test = dists.shape[0]
-        num_test = dists.shape[0]
         pred = np.zeros(num_test, np.int)
+        # self.train_X - картинки с 0 и 9
+        # self.train_y - 0-9
         for i in range(num_test):
+            nearests_indices = np.argsort(dists[i])[0:self.k]
+            pred[i] = Counter(self.train_y[nearests_indices]).most_common(1)[0][0]
             # TODO: Implement choosing best class based on k
             # nearest training samples
-            pass
         return pred

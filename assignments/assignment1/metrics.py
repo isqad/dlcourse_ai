@@ -26,7 +26,7 @@ def binary_classification_metrics(prediction, ground_truth):
     accuracy = (tp + tn) / (tp + fp + fn + tn)
     recall = tp / (tp + fn)
     precision = tp / (tp + fp)
-    f1 = 2*precision*recall/ (precision + recall)
+    f1 = (2*precision*recall + 1) / (precision + recall + 1)
 
     # TODO: implement metrics!
     # Some helpful links:
@@ -48,4 +48,9 @@ def multiclass_accuracy(prediction, ground_truth):
     accuracy - ratio of accurate predictions to total samples
     '''
     # TODO: Implement computing accuracy
-    return 0
+    
+    s  = ground_truth.shape[0]
+    tp = 0
+    for i in range(s):
+        if prediction[i] == ground_truth[i]: tp += 1
+    return tp / s
