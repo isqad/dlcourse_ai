@@ -6,7 +6,7 @@ def softmax(predictions):
     Computes probabilities from scores
 
     Arguments:
-      predictions, np array, shape is either (N) or (N, batch_size) -
+      predictions, np array, shape is either (N) or (batch_size, N) -
         classifier output
 
     Returns:
@@ -14,6 +14,7 @@ def softmax(predictions):
         probability for every class, 0..1
     '''
     # TODO implement softmax
+    # Your final implementation shouldn't have any loops
     raise Exception("Not implemented!")
 
 
@@ -22,7 +23,7 @@ def cross_entropy_loss(probs, target_index):
     Computes cross-entropy loss
 
     Arguments:
-      probs, np array, shape is either (N) or (N, batch_size) -
+      probs, np array, shape is either (N) or (batch_size, N) -
         probabilities for every class
       target_index: np array of int, shape is (1) or (batch_size) -
         index of the true class for given sample(s)
@@ -31,6 +32,7 @@ def cross_entropy_loss(probs, target_index):
       loss: single value
     '''
     # TODO implement cross-entropy
+    # Your final implementation shouldn't have any loops
     raise Exception("Not implemented!")
 
 
@@ -40,7 +42,7 @@ def softmax_with_cross_entropy(predictions, target_index):
     including the gradient
 
     Arguments:
-      predictions, np array, shape is either (N) or (N, batch_size) -
+      predictions, np array, shape is either (N) or (batch_size, N) -
         classifier output
       target_index: np array of int, shape is (1) or (batch_size) -
         index of the true class for given sample(s)
@@ -50,6 +52,7 @@ def softmax_with_cross_entropy(predictions, target_index):
       dprediction, np array same shape as predictions - gradient of predictions by loss value
     '''
     # TODO implement softmax with cross-entropy
+    # Your final implementation shouldn't have any loops
     raise Exception("Not implemented!")
 
     return loss, dprediction
@@ -69,6 +72,7 @@ def l2_regularization(W, reg_strength):
     '''
 
     # TODO: implement l2 regularization and gradient
+    # Your final implementation shouldn't have any loops
     raise Exception("Not implemented!")
 
     return loss, grad
@@ -91,6 +95,7 @@ def linear_softmax(X, W, target_index):
     predictions = np.dot(X, W)
 
     # TODO implement prediction and gradient over W
+    # Your final implementation shouldn't have any loops
     raise Exception("Not implemented!")
     
     return loss, dW
@@ -124,7 +129,7 @@ class LinearSoftmaxClassifier():
         for epoch in range(epochs):
             shuffled_indices = np.arange(num_train)
             np.random.shuffle(shuffled_indices)
-            sections = np.arange(self.batch_size, num_train, self.batch_size)
+            sections = np.arange(batch_size, num_train, batch_size)
             batches_indices = np.array_split(shuffled_indices, sections)
 
             # TODO implement generating batches from indices
@@ -152,6 +157,7 @@ class LinearSoftmaxClassifier():
         y_pred = np.zeros(X.shape[0], dtype=np.int)
 
         # TODO Implement class prediction
+        # Your final implementation shouldn't have any loops
         raise Exception("Not implemented!")
 
         return y_pred
